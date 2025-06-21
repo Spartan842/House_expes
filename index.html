@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monthly Expense Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="dashboard-heading">
+      Expense Dashboard –
+      <select id="monthSelector" onchange="renderTable()">
+        <option value="0">January</option>
+        <option value="1">February</option>
+        <option value="2">March</option>
+        <option value="3">April</option>
+        <option value="4">May</option>
+        <option value="5" selected>June</option>
+        <option value="6">July</option>
+        <option value="7">August</option>
+        <option value="8">September</option>
+        <option value="9">October</option>
+        <option value="10">November</option>
+        <option value="11">December</option>
+      </select>
+      <select id="yearSelector" onchange="renderTable()">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025" selected>2025</option>
+        <option value="2026">2026</option>
+      </select>
+    </h1>
+
+    <form id="expenseForm" class="form-card">
+      <div class="form-group">
+        <label for="person">Name</label>
+        <select id="person">
+          <option value="Shrijit">Mr. Shrijit</option>
+          <option value="Nitin">Mr. Nitin</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="item">Item</label>
+        <input type="text" id="item" required />
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount (₹)</label>
+        <input type="number" id="amount" required />
+      </div>
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" required />
+      </div>
+      <button type="submit" class="btn">Add Entry</button>
+    </form>
+
+    <div class="controls">
+      <button onclick="exportPDF()" class="btn-secondary">Export PDF</button>
+      <button onclick="downloadData()" class="btn-secondary">Download Data</button>
+    </div>
+
+    <h2>Expense Entries</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Item</th>
+            <th>Amount (₹)</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="expenseTable"></tbody>
+      </table>
+    </div>
+
+    <div class="summary">
+      <h2>Summary</h2>
+      <p><strong>Mr. Shrijit:</strong> ₹<span id="shrijitTotal">0</span></p>
+      <p><strong>Mr. Nitin:</strong> ₹<span id="nitinTotal">0</span></p>
+      <p><strong>Total Expense:</strong> ₹<span id="total">0</span></p>
+      <p><strong>Each Should Pay:</strong> ₹<span id="equalShare">0</span></p>
+      <p class="report" id="finalReport"></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
